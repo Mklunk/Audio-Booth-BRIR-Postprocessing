@@ -2,7 +2,7 @@
 %
 % This script works through﻿Kabzinski's Time-LS CTC results
 %
-% Last updated by Michael Klunk 02/02/2021
+% Last updated by Michael Klunk 02/16/2021
 
 %% Initializing the Script
 
