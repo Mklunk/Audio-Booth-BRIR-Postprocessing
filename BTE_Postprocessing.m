@@ -55,7 +55,6 @@ for index = 1:38
     BTE_Data(index).rotation = BTEData1{index,3};
     BTE_Data(index).IR_LEFT = data_TEMP.data(1).IR;
     BTE_Data(index).IR_RIGHT = data_TEMP.data(2).IR;
-    disp(num2str(index));
 end
 
 % Removing the missed measurement, 'neg_4_pos_60_45deg.mat'
@@ -92,4 +91,69 @@ BTE_Data(12) = [];
     
 % Clearing unneed imported data variables
 clear BTEData1 data_TEMP
+
+%% Taking the DFT of a Measurement (***THIS IS A TEST***)
+% ***NOTE*** Only using N = 2^8 for now...if this changes I will need to
+% also bring in higher resolution calibration transfer functions
+
+% FFT Parameters
+Fs = 48000;                 % Sampling frequency (Hz)
+N = 2^8;                    % Number of FFT Points
+dt = 1/Fs;                  % Delta t (s)
+T = dt*N;                   % Sampling Period (s)
+df = 1/T;                   % Delta f (Hz)
+f = (0:((N/2)-0))./N*Fs;    % Frequency vector (Hz)
+
+% Loading in the calibration transfer functions
+load('left_MRTF_Calibration.mat');
+load('right_MRTF_Calibration.mat');
+
+% Converting the first measurement into the frequency domain
+TF_BTE_Left_SPEAKER_TEST = fft(BTE_Data(1).IR_LEFT,N);
+TF_BTE_Right_SPEAKER_TEST = fft(BTE_Data(1).IR_RIGHT,N);
+
+% Calibrating the mini microphone data
+
+    % LEFT EAR
+     left_Speaker_Left_Ear = TF_BTE_Left_SPEAKER_TEST(:,1).*left_MRTF_Calibration;
+     right_Speaker_Left_Ear = TF_BTE_Right_SPEAKER_TEST(:,1).*left_MRTF_Calibration;
+     
+    % RIGHT EAR
+     left_Speaker_Right_Ear= TF_BTE_Left_SPEAKER_TEST(:,2).*right_MRTF_Calibration;
+     right_Speaker_Right_Ear = TF_BTE_Right_SPEAKER_TEST(:,2).*right_MRTF_Calibration;
+     
+% Concatenating calibrated mini microphone data with HATS data
+
+    % LEFT SPEAKER
+    concat_TF_BTE_Left_SPEAKER_TEST = [left_Speaker_Left_Ear, left_Speaker_Right_Ear, TF_BTE_Left_SPEAKER_TEST(:,3:4)];
+    concat_TF_BTE_Right_Speaker_TEST = [right_Speaker_Left_Ear, right_Speaker_Right_Ear, TF_BTE_Right_SPEAKER_TEST(:,3:4)];
     
+%% Plotting the Transfer Functions
+
+figure
+plot(f,20*log10(abs(concat_TF_BTE_Left_SPEAKER_TEST((1:(end/2+1)),1))))
+hold on
+plot(f,20*log10(abs(concat_TF_BTE_Left_SPEAKER_TEST((1:(end/2+1)),3))))
+grid on
+legend('Mini','H.A.T.S.')
+
+figure
+plot(f,20*log10(abs(concat_TF_BTE_Left_SPEAKER_TEST((1:(end/2+1)),2))))
+hold on
+plot(f,20*log10(abs(concat_TF_BTE_Left_SPEAKER_TEST((1:(end/2+1)),4))))
+grid on
+legend('Mini','H.A.T.S.')
+
+figure
+plot(f,20*log10(abs(concat_TF_BTE_Right_Speaker_TEST((1:(end/2+1)),1))))
+hold on
+plot(f,20*log10(abs(concat_TF_BTE_Right_Speaker_TEST((1:(end/2+1)),3))))
+grid on
+legend('Mini','H.A.T.S.')
+
+figure
+plot(f,20*log10(abs(concat_TF_BTE_Right_Speaker_TEST((1:(end/2+1)),2))))
+hold on
+plot(f,20*log10(abs(concat_TF_BTE_Right_Speaker_TEST((1:(end/2+1)),4))))
+grid on
+legend('Mini','H.A.T.S.')

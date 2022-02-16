@@ -237,11 +237,11 @@ clc
 
     % FFT Parameters
     Fs = 48000;                 % Sampling frequency (Hz)
-    N = 2^8;                   % Number of FFT Points
+    N = 2^8;                    % Number of FFT Points
     dt = 1/Fs;                  % Delta t (s)
     T = dt*N;                   % Sampling Period (s)
     df = 1/T;                   % Delta f (Hz)
-    f = (0:((N/2)-0))./N*Fs;    % Frequency vector(Hz)
+    f = (0:((N/2)-0))./N*Fs;    % Frequency vector (Hz)
 
     % LEFT MINI MICROPHONE TRANSFER FUNCTION 
     TF_PM_Mini_L = fft(IR_PM_Mini_L_AVG, N);
