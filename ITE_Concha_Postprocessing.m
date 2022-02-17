@@ -77,8 +77,8 @@ load('left_MRTF_Calibration.mat');
 load('right_MRTF_Calibration.mat');
 
 % Converting the first measurement into the frequency domain
-TF_ITE_Concha_Left_SPEAKER_TEST = fft(ITE_Concha_Data(1).IR_LEFT,N);
-TF_ITE_Concha_Right_SPEAKER_TEST = fft(ITE_Concha_Data(1).IR_RIGHT,N);
+TF_ITE_Concha_Left_SPEAKER_TEST = fft(ITE_Concha_Data(13).IR_LEFT,N);
+TF_ITE_Concha_Right_SPEAKER_TEST = fft(ITE_Concha_Data(13).IR_RIGHT,N);
 
 % Calibrating the mini microphone data
 
@@ -99,41 +99,45 @@ TF_ITE_Concha_Right_SPEAKER_TEST = fft(ITE_Concha_Data(1).IR_RIGHT,N);
 %% Plotting the Transfer Functions
 
 figure
-plot(f,20*log10(abs(concat_TF_BTE_Left_SPEAKER_TEST((1:(end/2+1)),1))))
+semilogx(f,20*log10(abs(concat_TF_BTE_Left_SPEAKER_TEST((1:(end/2+1)),1))))
 hold on
-plot(f,20*log10(abs(concat_TF_BTE_Left_SPEAKER_TEST((1:(end/2+1)),3))))
+semilogx(f,20*log10(abs(concat_TF_BTE_Left_SPEAKER_TEST((1:(end/2+1)),3))))
 grid on
 xlabel('Frequency (Hz)')
 ylabel('Magnitude (dB)')
 title('ITE Concha: Left Loudspeaker to Left Ear')
+xlim([200 16000])
 legend('Mini','H.A.T.S.')
 
 figure
-plot(f,20*log10(abs(concat_TF_BTE_Left_SPEAKER_TEST((1:(end/2+1)),2))))
+semilogx(f,20*log10(abs(concat_TF_BTE_Left_SPEAKER_TEST((1:(end/2+1)),2))))
 hold on
-plot(f,20*log10(abs(concat_TF_BTE_Left_SPEAKER_TEST((1:(end/2+1)),4))))
+semilogx(f,20*log10(abs(concat_TF_BTE_Left_SPEAKER_TEST((1:(end/2+1)),4))))
 grid on
 xlabel('Frequency (Hz)')
 ylabel('Magnitude (dB)')
 title('ITE Concha: Left Loudspeaker to Right Ear')
+xlim([200 16000])
 legend('Mini','H.A.T.S.')
 
 figure
-plot(f,20*log10(abs(concat_TF_BTE_Right_Speaker_TEST((1:(end/2+1)),1))))
+semilogx(f,20*log10(abs(concat_TF_BTE_Right_Speaker_TEST((1:(end/2+1)),1))))
 hold on
-plot(f,20*log10(abs(concat_TF_BTE_Right_Speaker_TEST((1:(end/2+1)),3))))
+semilogx(f,20*log10(abs(concat_TF_BTE_Right_Speaker_TEST((1:(end/2+1)),3))))
 grid on
 xlabel('Frequency (Hz)')
 ylabel('Magnitude (dB)')
 title('ITE Concha: Right Loudspeaker to Left Ear')
+xlim([200 16000])
 legend('Mini','H.A.T.S.')
 
 figure
-plot(f,20*log10(abs(concat_TF_BTE_Right_Speaker_TEST((1:(end/2+1)),2))))
+semilogx(f,20*log10(abs(concat_TF_BTE_Right_Speaker_TEST((1:(end/2+1)),2))))
 hold on
-plot(f,20*log10(abs(concat_TF_BTE_Right_Speaker_TEST((1:(end/2+1)),4))))
+semilogx(f,20*log10(abs(concat_TF_BTE_Right_Speaker_TEST((1:(end/2+1)),4))))
 grid on
 xlabel('Frequency (Hz)')
 ylabel('Magnitude (dB)')
 title('ITE Concha: Right Loudspeaker to Right Ear')
+xlim([200 16000])
 legend('Mini','H.A.T.S.')
