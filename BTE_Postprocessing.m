@@ -1,6 +1,6 @@
 %% BTE_Postprocessing.m
 %
-% This script processing the Behind the Ear (BTE) impulse response data 
+% This script processes the Behind the Ear (BTE) impulse response data 
 %
 % Last updated by Michael Klunk 02/17/2021
 
@@ -135,6 +135,9 @@ plot(f,20*log10(abs(concat_TF_BTE_Left_SPEAKER_TEST((1:(end/2+1)),1))))
 hold on
 plot(f,20*log10(abs(concat_TF_BTE_Left_SPEAKER_TEST((1:(end/2+1)),3))))
 grid on
+xlabel('Frequency (Hz)')
+ylabel('Magnitude (dB)')
+title('BTE: Left Loudspeaker to Left Ear')
 legend('Mini','H.A.T.S.')
 
 figure
@@ -142,6 +145,9 @@ plot(f,20*log10(abs(concat_TF_BTE_Left_SPEAKER_TEST((1:(end/2+1)),2))))
 hold on
 plot(f,20*log10(abs(concat_TF_BTE_Left_SPEAKER_TEST((1:(end/2+1)),4))))
 grid on
+xlabel('Frequency (Hz)')
+ylabel('Magnitude (dB)')
+title('BTE: Left Loudspeaker to Right Ear')
 legend('Mini','H.A.T.S.')
 
 figure
@@ -149,6 +155,9 @@ plot(f,20*log10(abs(concat_TF_BTE_Right_Speaker_TEST((1:(end/2+1)),1))))
 hold on
 plot(f,20*log10(abs(concat_TF_BTE_Right_Speaker_TEST((1:(end/2+1)),3))))
 grid on
+xlabel('Frequency (Hz)')
+ylabel('Magnitude (dB)')
+title('BTE: Right Loudspeaker to Left Ear')
 legend('Mini','H.A.T.S.')
 
 figure
@@ -156,4 +165,7 @@ plot(f,20*log10(abs(concat_TF_BTE_Right_Speaker_TEST((1:(end/2+1)),2))))
 hold on
 plot(f,20*log10(abs(concat_TF_BTE_Right_Speaker_TEST((1:(end/2+1)),4))))
 grid on
+xlabel('Frequency (Hz)')
+ylabel('Magnitude (dB)')
+title('BTE: Right Loudspeaker to Right Ear')
 legend('Mini','H.A.T.S.')
