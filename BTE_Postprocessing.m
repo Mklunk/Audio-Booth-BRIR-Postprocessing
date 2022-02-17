@@ -2,7 +2,7 @@
 %
 % This script processing the Behind the Ear (BTE) impulse response data 
 %
-% Last updated by Michael Klunk 02/16/2021
+% Last updated by Michael Klunk 02/17/2021
 
 %% Initializing the Script
 
