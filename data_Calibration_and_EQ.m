@@ -237,7 +237,7 @@ clc
 
     % FFT Parameters
     Fs = 48000;                 % Sampling frequency (Hz)
-    N = 2^8;                    % Number of FFT Points
+    N = 2^11;                   % Number of FFT Points
     dt = 1/Fs;                  % Delta t (s)
     T = dt*N;                   % Sampling Period (s)
     df = 1/T;                   % Delta f (Hz)
