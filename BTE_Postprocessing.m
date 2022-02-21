@@ -1,6 +1,7 @@
 %% BTE_Postprocessing.m
 %
-% This script processes the Behind the Ear (BTE) impulse response data 
+% This script processes the Behind the Ear (BTE) binaural room impulse 
+% response data 
 %
 % Last updated by Michael Klunk 02/21/2021
 
