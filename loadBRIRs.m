@@ -35,15 +35,14 @@ field2 = 'ordinate';  value2 = struct_Init;
 field3 = 'rotation';  value3 = struct_Init;
 field4 = 'IR_LEFT';  value4 = {zeros(48000,4)};
 field5 = 'IR_RIGHT';  value5 = {zeros(48000,4)};
-field6 = 'measurement_Iteration'; value6 = 1;
 
 % Inititalizing BTE struct
 BRIR_Data = struct(field1,value1,field2,value2,field3,value3,field4,...
-    value4,field5,value5,field6,value6);
+    value4,field5,value5);
 
 % Clearing unneeded initiazation variables
-clear field1 field2 field3 field4 field5 field6 value1 value2 value3...
-    value4 value5 value6 struct_Init
+clear field1 field2 field3 field4 field5 value1 value2 value3...
+    value4 value5 struct_Init
 
 % Loading in BTE (measurement parameter) Data as a cell array
 load(param_Str);
